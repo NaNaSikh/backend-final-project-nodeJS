@@ -8,16 +8,16 @@ const jwt = require('jsonwebtoken');
 
 module.exports = {
     requireLogin: (req, res, next) => {
-        // const authHeader = req.headers.authorization;
-        // console.log('Authorization Header:', authHeader);
+        const authHeader = req.headers.authorization;
+        console.log('Authorization Header:', authHeader);
 
         if (!authHeader) {
             return res.status(401).json({ message: 'missing_authorization_header' });
         }
 
         const token = authHeader.split(' ')[1];
-        // console.log('Token:', token);
-        // console.log('SECRET_KEY:', process.env.SECRET_KEY);
+        console.log('Token:', token);
+        console.log('SECRET_KEY:', process.env.SECRET_KEY);
 
         jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
             if (err) {
@@ -47,8 +47,8 @@ module.exports = {
             }
 
             const token = authHeader.split(' ')[1];
-            // console.log('Token:', token);
-            // console.log('SECRET_KEY:', process.env.SECRET_KEY);
+            console.log('Token:', token);
+            console.log('SECRET_KEY:', process.env.SECRET_KEY);
 
             jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
                 if (err) {

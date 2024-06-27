@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    /* Changed font family to Courier New */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #a1a1a1;
+    width: 100%;
+    overflow: hidden;
+}
+
+.ring {
+    position: relative;
+    width: 450px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ring i {
+    position: absolute;
+    inset: 0;
+    border: 2px solid #fff;
+    transition: 0.5s;
+}
+
+.ring i:nth-child(1) {
+    border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+    animation: animate 6s linear infinite;
+}
+
+.ring i:nth-child(2) {
+    border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+    animation: animate 4s linear infinite;
+}
+
+.ring i:nth-child(3) {
+    border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+    animation: animate2 10s linear infinite;
+}
+
+.ring:hover i {
+    border: 6px solid var(--clr);
+    filter: drop-shadow(0 0 20px var(--clr));
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animate2 {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.login {
+    position: absolute;
+    width: 250px;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login h2 {
+    font-size: 2em;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    /* Change font family */
+    font-weight: bold;
+    /* Example of adding font-weight */
+}
+
+.login h3 {
+    font-size: 1em;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    /* Change font family */
+    font-style: italic;
+    /* Example of adding font-style */
+}
+
+.login .inputBx {
+    position: relative;
+    width: 100%;
+}
+
+.login .inputBx input {
+    position: relative;
+    width: 100%;
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 40px;
+    font-size: 1.2em;
+    color: #fff;
+    box-shadow: none;
+    outline: none;
+}
+
+.login .inputBx input[type="submit"] {
+    width: 100%;
+    background: #ff0000;
+    background: linear-gradient(45deg, #c0bbbb, #595959);
+    border: none;
+    cursor: pointer;
+}
+
+.login .inputBx input::placeholder {
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.75);
+    font-family: 'Courier New', Courier, monospace;
+    /* Change font family */
+}
+
+.login .links {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.login .links a {
+    width: 100%;
+    background: #ff0000;
+    background: linear-gradient(45deg, #c0bbbb, #595959);
+    border: 2px solid #fff;
+    border-radius: 40px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    /* Change font family */
+    font-size: 1em;
+    /* Example of changing font size */
+}
+
+.login .links a:hover {
+    background: linear-gradient(45deg, #5b5b5b, #ffffff);
+}
+
+.login .links a::placeholder {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.login button {
+    width: 100%;
+    background: #ff0000;
+    background: linear-gradient(45deg, #c0bbbb, #595959);
+    border: 2px solid #fff;
+    border-radius: 40px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+}
+
+.login button:hover {
+    background: linear-gradient(45deg, #5b5b5b, #ffffff);
+}
+
+.login button:placeholder {
+    color: rgba(255, 255, 255, 0.75);
+}

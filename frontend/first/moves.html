@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movies and books</title>
+    <link rel="stylesheet" href="first.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <nav class="navigation-menu">
+        <ul>
+          <li><a href="moves.html">Movies</a></li>
+          <li><a href="books.html">Books</a></li>
+          <li><button type="submit"  id="logOut">Log Out</button></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="text">
+      <h2>Movies</h2>
+    </div>
+
+    <div class="image-container-wrapper" id="movieContainer"></div>
+    <script>
+      async function fetchMovies() {
+        const token = localStorage.getItem("token");
+        console.log(token)
+        try {
+          const response = await fetch("http://127.0.0.1:3000/movies/all", {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}` // Use backticks here
+            },
+          });
+          if (!response.ok) {
+            throw new Error("Failed to fetch movies");
+          }
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error("Error fetching movies:", error.message);
+          return [];
+        }
+      }
+
+      async function showMovies() {
+        const movieContainer = document.getElementById("movieContainer");
+        const books = await fetchMovies();
+
+        movieContainer.innerHTML = "";
+
+        // Loop through fetched books and create HTML structure
+        books.forEach((movie) => {
+          const item = document.createElement("div");
+          item.classList.add("item");
+
+          item.innerHTML = `
+                <img src="${movie.imageUrl || "film.png"}">
+                <div>
+                    <h3>${movie.title}</h3>
+                    <p><strong>Genre:</strong> ${movie.genre}</p>
+                    <p><strong>Director:</strong> ${movie.director}</p>
+                    <p><strong>Release Date:</strong> ${new Date(
+                      movie.releaseDate
+                    ).toLocaleDateString()}</p>
+                    <p><strong>Rating:</strong> ${movie.rating}/5</p>
+                </div>
+            `;
+
+          movieContainer.appendChild(item);
+        });
+      }
+
+      function handleLogout() {
+        localStorage.removeItem("token"); // Remove token from localStorage
+        window.location.href = "../index/index.html"; // Redirect to index.html
+      }
+
+      // Add event listener for logout button
+      document.getElementById("logOut").addEventListener("click", handleLogout);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        showMovies();
+      });
+
+      
+    </script>
+
+    <footer>
+      <p>&copy; 2024 Moves & Books</p>
+    </footer>
+  </body>
+</html>
